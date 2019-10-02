@@ -2,7 +2,8 @@ require("dotenv").config();
 var request = require("request");
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
-var axios = require("axios");
+var moment = require("moment");
+var fs = require("fs");
 
 
 var action = process.argv[2];
@@ -33,7 +34,7 @@ console.log("searching for: " + action);
 // movie function
 function movieThis(value) {
 
-    var queryUrl = "http://www.omdbapi.com/?s=" + value + "&y=&plot=short&apikey=43f7938d";
+    var queryUrl = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=43f7938d";
 
     request(queryUrl, function (err, response, body) {
         if (!value) {
@@ -43,11 +44,10 @@ function movieThis(value) {
         var results = JSON.parse(body);
 
         if (!err && response.statusCode === 200) {
-            console.log("Title: " + results.Tile);
+            console.log("Title: " + results.Title);
             console.log("Release Year: " + results.Year);
         }
-
-    })
+    });
 }
 
 // song function
@@ -71,3 +71,29 @@ function spotifyThisSong(value) {
     });
 }
 
+function doWhatItSays(value){
+    fs.readFile("random.txt", "utf-8", function(err, buf){
+        console.log(buf.toString());
+    });
+}
+
+// concert search
+// the api page for the link in the homework page is not working
+// function concertThis(value) {
+
+//     var queryUrl = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=43f7938d";
+
+//     request(queryUrl, function (err, response, body) {
+//         if (!value) {
+//             value = "Burning Man";
+//         }
+
+//         var results = JSON.parse(body)[0];
+
+//         if (!err && response.statusCode === 200) {
+//             console.log("City: " + results.venue.city);
+//             console.log("Venue Name: " + results.venue.name);
+//         }
+//     });
+
+// }
