@@ -1,4 +1,4 @@
 # liri-node-app
 
 
-[!] (master/Screen%20Shot%202019-10-22%20at%2011.28.50%20PM.png)
+[ liri image ] (master/Screen%20Shot%202019-10-22%20at%2011.28.50%20PM.png)
